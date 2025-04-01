@@ -1,0 +1,26 @@
+<!-- core/templates/core/my_appointments.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Appointments</title>
+</head>
+<body>
+    <h1>My Appointments</h1>
+    {% if appointments %}
+        <ul>
+            {% for a in appointments %}
+                <li>
+                    Appointment with 
+                    {% if a.doctor %}Dr. {{ a.doctor.user.username }}{% endif %}
+                    on {{ a.date }} at {{ a.time }}
+                    <br>
+                    Notes: {{ a.notes }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No appointments found.</p>
+    {% endif %}
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!-- core/templates/core/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Management Home</title>
+</head>
+<body>
+    <h1>Welcome to the Health Management System</h1>
+    <p>This is your one-stop place for health records, appointment scheduling, and more.</p>
+
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}! <a href="{% url 'my_appointments' %}">View my appointments</a></p>
+    {% else %}
+        <p><a href="/accounts/login/">Log in</a> or <a href="/accounts/signup/">Sign up</a></p>
+    {% endif %}
+</body>
+</html>
