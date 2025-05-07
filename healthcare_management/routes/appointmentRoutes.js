@@ -1,9 +1,10 @@
 import express from 'express';
-import { getAppointments, createAppointment } from '../controllers/appointmentControllers.js';
+import { getAppointments, getMedications, createAppointment } from '../controllers/appointmentControllers.js';
 
 const router = express.Router();
 
 router.get('/', getAppointments);
+router.get('/medications', getMedications);
 router.post('/', createAppointment);
 
 export default router;

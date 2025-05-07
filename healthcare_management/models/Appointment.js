@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
 const appointmentSchema = new mongoose.Schema({
-  apt_time: String,
+  apt_dateTime: String,
+  apt_name: String,
   DID: String,
-  PID: String,
-  content: String
+  PID: String
 }, {
-  collection: 'appointmentsList'
+  collection: 'appointmentList'
 });
 
 export default mongoose.model('Appointment', appointmentSchema);
