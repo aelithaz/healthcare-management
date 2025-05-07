@@ -10,9 +10,16 @@ function App() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/appointments")
-      .then((res) => res.json())
-      .then((data) => setAppointments(data));
+    fetch("/api/appointments")
+      .then((res) => {
+        console.log("📡 Status:", res.status);
+        return res.json();
+      })
+      .then((data) => {
+        console.log("📦 Fetched appointments:", data);
+        setAppointments(data);
+      })
+      .catch(err => console.error("❌ Fetch error:", err));
   }, []);
 
   return (

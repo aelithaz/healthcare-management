@@ -5,6 +5,8 @@ const appointmentSchema = new mongoose.Schema({
   DID: String,
   PID: String,
   content: String
+}, {
+  collection: 'appointmentsList'
 });
 
 export default mongoose.model('Appointment', appointmentSchema);
