@@ -4,28 +4,23 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const navigate = useNavigate();
 
-  // Define state for storing form data and errors
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [role, setRole] = useState<'doctor' | 'patient' | ''>('');  // Track user role
+  const [role, setRole] = useState<'doctor' | 'patient' | ''>(''); 
 
-  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation check
     if (!email || !password || !role) {
       setError('Please fill in all fields');
       return;
     }
 
-    // Perform login logic (API call, check credentials, etc.)
     if (email === 'doctor@example.com' && password === 'doctor123' && role === 'doctor') {
-      // Redirect to the doctor's portal
       navigate('/doctor');
     } else if (email === 'patient@example.com' && password === 'patient123' && role === 'patient') {
-      // Redirect to the patient's portal
       navigate('/patient');
     } else {
       setError('Invalid credentials or role');
