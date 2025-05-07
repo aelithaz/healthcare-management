@@ -2,10 +2,9 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { FileText, User, Home as HomeIcon } from "lucide-react";
-
+import styles from '../css/Navbar.module.css';
 
 export default function Navbar() {
-  const location = useLocation();
   const navLinks = [
     {
       to: "/",
@@ -26,24 +25,22 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="navbar">
-      <div className="navbar-title">MedPortal</div>
-      <div className="navbar-links">
+    <nav className={styles.navbar}>
+      <div className={styles.title}>MedPortal</div>
+      <div className={styles.links}>
         {navLinks.map((link) => (
           <NavLink
             key={link.to}
             to={link.to}
             end={link.exact}
             className={({ isActive }) =>
-              `navlink ${isActive ? "navlink-active" : "navlink-inactive"}`
+              `${styles.link} ${isActive ? styles.linkActive : styles.linkInactive}`
             }
           >
-            <Button variant="ghost" asChild className="button-reset">
-              <span className="flex items-center">
-                {link.icon}
-                <span>{link.label}</span>
-              </span>
-            </Button>
+            <span className={styles.linkContent}>
+              {link.icon}
+              <span>{link.label}</span>
+            </span>
           </NavLink>
         ))}
       </div>
