@@ -22,6 +22,11 @@ export default function Navbar() {
       label: "Profile",
       icon: <User className="w-5 h-5 mr-1" />,
     },
+    {
+      to: "/doctor",
+      label: "Doctors",
+      icon: <User className="w-5 h-5 mr-1" />,
+    },
   ];
 
   return (
