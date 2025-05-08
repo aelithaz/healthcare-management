@@ -1,23 +1,27 @@
-import { useState } from 'react'
-import './css/App.css'
-import { Routes,Route } from 'react-router-dom'
-import Home from './pages/home'
-import Testing from './pages/testing'
-import Layout from "./Layout";
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Login from './loginpage';
+import PatientHome from './pages/patientpage/patienthome';
+import RecordsPage from './pages/patientpage/RecordsPage';
+import PatientLayout from './pages/patientpage/PatientLayout';
+import DoctorHome from './pages/doctorpage/doctorhome';
 
-function App() {
-  const [count, setCount] = useState(0)
+const AppRoutes = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="testing" element={<Testing />} />
-        </Route>
-      </Routes>
-  
-    </>
-  )
-}
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/doctor" element={<DoctorHome />} />
+      
+      {/* Patient Routes */}
+      <Route path="/patient" element={<PatientLayout />}>
+        <Route index element={<PatientHome />} />
+        <Route path="records" element={<RecordsPage />} />
+      </Route>
 
-export default App
+      {/* Redirect to login if no route matches */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
+  );
+};
+
+export default AppRoutes;

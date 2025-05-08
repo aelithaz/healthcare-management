@@ -1,0 +1,12 @@
+.layout {
+  min-height: 100vh;
+  background: #f7fcfd;
+}
+
+.main {
+  padding-top: 100px; /* Add space below the fixed navbar */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 48px;
+  padding-right: 48px;
+} 

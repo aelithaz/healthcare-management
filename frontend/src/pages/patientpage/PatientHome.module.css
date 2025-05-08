@@ -1,0 +1,170 @@
+.bg {
+  min-height: 100vh;
+  background: #f7fcfd;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 48px 0 48px;
+}
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0090d0;
+}
+.nav {
+  display: flex;
+  gap: 32px;
+}
+.navLink {
+  color: #0090d0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.navLink:hover {
+  background: #e6f6fb;
+}
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 0;
+  text-align: center;
+}
+.welcome {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0090d0;
+  margin-bottom: 8px;
+}
+.subtitle {
+  color: #0090d0;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+.cards {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+}
+.card {
+  background: #e6f6fb;
+  border-radius: 16px;
+  padding: 32px 24px;
+  flex: 1;
+  min-width: 340px;
+  box-shadow: 0 2px 8px #0001;
+  text-align: left;
+}
+.cardTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0077b6;
+  margin-bottom: 8px;
+}
+.cardSubtitle {
+  color: #0090d0;
+  font-size: 1rem;
+  margin-bottom: 18px;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 2px #0001;
+}
+.listDetail {
+  color: #0090d0;
+  font-size: 0.98rem;
+}
+.statusActive {
+  color: #0090d0;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.statusRefill {
+  color: #ff9900;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.actionBtn {
+  background: #fff;
+  color: #0090d0;
+  border: 1.5px solid #b6e6fa;
+  border-radius: 8px;
+  padding: 12px 0;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.actionBtn:hover {
+  background: #d0f0fa;
+}
+.primaryBtn {
+  background: #cceeff;
+  color: #0090d0;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.primaryBtn:hover {
+  background: #b6e6fa;
+}
+.medBtnRow {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modalContent {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px #0002;
+  padding: 36px 32px 28px 32px;
+  min-width: 380px;
+  max-width: 95vw;
+  width: 480px;
+  height: 480px;
+  max-height: 80vh;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.modalList {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  margin-bottom: 18px;
+} 
