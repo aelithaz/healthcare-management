@@ -1,11 +1,19 @@
 import React from 'react';
+import styles from './DoctorHome.module.css';
+import DoctorNavbar from './DoctorNavbar';
+import DoctorAppointmentsCard from './DoctorAppointmentsCard';
 
 const DoctorHome = () => {
   return (
-    <div style={{ padding: '48px 0', textAlign: 'center' }}>
-      <h1 style={{ fontSize: 32, fontWeight: 700, color: '#2563eb', marginBottom: 16 }}>Welcome, Doctor!</h1>
-      <p style={{ fontSize: 20, color: '#334155' }}>This is your doctor dashboard. Here you can manage your patients and appointments.</p>
-      {/* Add more doctor-specific features here */}
+    <div className={styles.bg}>
+      <DoctorNavbar />
+      <main className={styles.main}>
+        <h1 className={styles.welcome}>Welcome, Dr. Smith!</h1>
+        <p className={styles.subtitle}>This is your dashboard. Future features for managing patients, appointments, and records will appear here.</p>
+        <div className={styles.cardsRow}>
+          <DoctorAppointmentsCard />
+        </div>
+      </main>
     </div>
   );
 };

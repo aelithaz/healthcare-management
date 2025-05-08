@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './PatientHome.module.css';
+import PatientNavbar from './PatientNavbar';
 
 const appointments = [
   {
@@ -64,14 +65,7 @@ const PatientHome = () => {
 
   return (
     <div className={styles.bg}>
-      <header className={styles.header}>
-        <div className={styles.logo}>MedPortal</div>
-        <nav className={styles.nav}>
-          <a className={styles.navLink} href="#">Home</a>
-          <a className={styles.navLink} href="#">Records</a>
-          <a className={styles.navLink} href="#">Profile</a>
-        </nav>
-      </header>
+      <PatientNavbar />
       <main className={styles.main}>
         <h1 className={styles.welcome}>Welcome, Jimmy!</h1>
         <div className={styles.subtitle}>

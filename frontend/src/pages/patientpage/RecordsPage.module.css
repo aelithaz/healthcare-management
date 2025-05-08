@@ -1,0 +1,128 @@
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #0090d0;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #0090d0;
+  font-size: 1.1rem;
+}
+
+.recordsLayout {
+  display: flex;
+  gap: 28px;
+  margin-top: 18px;
+}
+
+.sidebar {
+  background: #e6f6fb;
+  border-radius: 14px;
+  min-width: 270px;
+  max-width: 320px;
+  padding: 18px 0 18px 0;
+  box-shadow: 0 2px 8px #0001;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 600px;
+  overflow-y: auto;
+}
+
+.sidebarTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0090d0;
+  margin-left: 24px;
+  margin-bottom: 10px;
+}
+
+.recordList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recordItem, .recordItemSelected {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #e6f6fb;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 0 12px 10px 12px;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.recordItemSelected {
+  background: #fff;
+  box-shadow: 0 2px 8px #0001;
+}
+
+.recordIcon {
+  font-size: 1.6rem;
+  margin-top: 2px;
+}
+
+.recordName {
+  font-weight: 600;
+  color: #0077b6;
+  font-size: 1.05rem;
+}
+
+.recordMeta {
+  color: #0090d0;
+  font-size: 0.95rem;
+  margin-top: 2px;
+}
+
+.preview {
+  background: #f7fcfd;
+  border-radius: 14px;
+  flex: 1 1 0;
+  min-width: 0;
+  box-shadow: 0 2px 8px #0001;
+  padding: 24px 32px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  overflow-y: auto;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.previewTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0077b6;
+}
+
+.previewDate {
+  color: #0090d0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.previewContent {
+  color: #166086;
+  font-size: 1.08rem;
+  margin-top: 10px;
+}
+
+.previewPlaceholder {
+  color: #0090d0;
+  font-size: 1.1rem;
+  margin-top: 40px;
+  text-align: center;
+} 
