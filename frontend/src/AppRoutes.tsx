@@ -1,19 +1,19 @@
 import { useState } from 'react'
 import './css/App.css'
 import { Routes,Route } from 'react-router-dom'
-import Home from './pages/home'
-import Testing from './pages/testing'
-import Layout from "./Layout";
+import Login from './loginpage';
+import DoctorHome from './pages/doctorpage/doctorhome';
+import PatientHome from './pages/patientpage/patienthome';
 
 function App() {
   const [count, setCount] = useState(0)
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="testing" element={<Testing />} />
-        </Route>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/doctor" element={<DoctorHome />} />
+        <Route path="/patient" element={<PatientHome />} />
       </Routes>
   
     </>
