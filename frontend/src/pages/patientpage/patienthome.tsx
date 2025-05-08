@@ -13,40 +13,16 @@ type Medication = {
   status: string;
 };
 
+type Appointment = {
+  apt_dateTime: string;
+  apt_name: string;
+  DID: string;
+  PID: string;
+};
+
 const PID = "patJimmy";
 
-const appointments = [
-  {
-    title: 'Annual Checkup',
-    date: 'May 10, 2025',
-    time: '10:00 AM',
-    doctor: 'Dr. Smith',
-  },
-  {
-    title: 'Dental Cleaning',
-    date: 'May 15, 2025',
-    time: '2:30 PM',
-    doctor: 'Dr. Johnson',
-  },
-  {
-    title: 'Eye Examination',
-    date: 'May 22, 2025',
-    time: '11:15 AM',
-    doctor: 'Dr. Williams',
-  },
-  {
-    title: 'Eye Examination',
-    date: 'May 22, 2025',
-    time: '11:15 AM',
-    doctor: 'Dr. Williams',
-  },
-  {
-    title: 'Eye Examination',
-    date: 'May 22, 2025',
-    time: '11:15 AM',
-    doctor: 'Dr. Williams',
-  },
-];
+
 
 const PatientHome = () => {
   const [showAppointmentsModal, setShowAppointmentsModal] = useState(false);
@@ -70,7 +46,26 @@ const PatientHome = () => {
       .catch((err) => {
         console.error("❌ Failed to fetch medications:", err);
       });
-  }, []);  
+  }, []);
+
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+
+  useEffect(() => {
+    axios.get('/api/appointments')
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          const patientAppointments = res.data
+            .filter((a) => a.PID?.trim().toLowerCase() === PID.toLowerCase())
+            .sort((a, b) => new Date(a.apt_dateTime).getTime() - new Date(b.apt_dateTime).getTime());
+          setAppointments(patientAppointments);
+        } else {
+          console.warn("⚠️ Unexpected appointment response:", res.data);
+        }
+      })
+      .catch((err) => {
+        console.error("❌ Failed to fetch appointments:", err);
+      });
+  }, []);
 
   return (
     <div className={styles.bg}>
@@ -78,7 +73,19 @@ const PatientHome = () => {
       <main className={styles.main}>
         <h1 className={styles.welcome}>Welcome, Jimmy!</h1>
         <div className={styles.subtitle}>
-          Your next appointment is on May 10, 2025. Remember to take your medications as prescribed.
+          {appointments.length > 0 ? (
+            <>
+              Your next appointment is on{" "}
+              {new Date(appointments[0].apt_dateTime).toLocaleDateString(undefined, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}.
+              {" "}Remember to take your medications as prescribed.
+            </>
+          ) : (
+            "No appointments scheduled."
+          )}
         </div>
         <div className={styles.cards}>
           <section className={styles.card}>
@@ -88,15 +95,14 @@ const PatientHome = () => {
               {appointments.slice(0, 3).map((appt, i) => (
                 <li key={i} className={styles.listItem}>
                   <div>
-                    <strong>{appt.title}</strong>
-                    <div className={styles.listDetail}>{appt.date} at {appt.time}</div>
-                    <div className={styles.listDetail}>With {appt.doctor}</div>
+                  <strong>{appt.apt_name}</strong>
+                  <div className={styles.listDetail}>{new Date(appt.apt_dateTime).toLocaleString()}</div>
+                  <div className={styles.listDetail}>With {appt.DID}</div>
                   </div>
                 </li>
               ))}
             </ul>
             <button className={styles.actionBtn} onClick={() => setShowAppointmentsModal(true)}>View All Appointments</button>
-            <button className={styles.primaryBtn}>Schedule New Appointment</button>
           </section>
           <section className={styles.card}>
             <h2 className={styles.cardTitle}>Current Medications</h2>
@@ -120,10 +126,6 @@ const PatientHome = () => {
               ))}
             </ul>
             <button className={styles.actionBtn} onClick={() => setShowMedicationsModal(true)}>View All Medications</button>
-            <div className={styles.medBtnRow}>
-              <button className={styles.actionBtn}>Refill</button>
-              <button className={styles.primaryBtn}>Add New</button>
-            </div>
           </section>
         </div>
         {/* Appointments Modal */}
@@ -136,9 +138,9 @@ const PatientHome = () => {
                   {appointments.map((appt, i) => (
                     <li key={i} className={styles.listItem}>
                       <div>
-                        <strong>{appt.title}</strong>
-                        <div className={styles.listDetail}>{appt.date} at {appt.time}</div>
-                        <div className={styles.listDetail}>With {appt.doctor}</div>
+                      <strong>{appt.apt_name}</strong>
+                      <div className={styles.listDetail}>{new Date(appt.apt_dateTime).toLocaleString()}</div>
+                      <div className={styles.listDetail}>With {appt.DID}</div>
                       </div>
                     </li>
                   ))}
