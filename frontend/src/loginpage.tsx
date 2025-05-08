@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styles from './css/login/loginpage.module.css';
-// You can use an icon library, but for simplicity, we'll use an emoji for the lock icon
 
-const users = [
-  { email: 'doctor@example.com', password: 'doctor123', role: 'doctor' },
-  { email: 'patient@example.com', password: 'patient123', role: 'patient' }
-];
+type Account = {
+  ID: string;
+  name: string;
+  email: string;
+  password: string;
+};
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,6 +16,19 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<'doctor' | 'patient' | ''>('');
   const [error, setError] = useState('');
+  const [accounts, setAccounts] = useState<Account[]>([]);
+
+  useEffect(() => {
+    axios.get('/api/accounts')
+      .then(res => {
+        if (Array.isArray(res.data)) {
+          setAccounts(res.data);
+        } else {
+          console.warn("⚠️ Unexpected account response:", res.data);
+        }
+      })
+      .catch(err => console.error("❌ Failed to fetch accounts:", err));
+  }, []);
 
   const handleRoleSelect = (selectedRole: 'doctor' | 'patient') => {
     setRole(selectedRole);
@@ -28,10 +43,17 @@ const Login = () => {
       setError('Please fill in all fields');
       return;
     }
-    const found = users.find(
-      u => u.email === email && u.password === password && u.role === role
+
+    const matched = accounts.find(
+      acc =>
+        acc.email === email &&
+        acc.password === password &&
+        (role === 'doctor' ? acc.ID.startsWith('doc') : acc.ID.startsWith('pat'))
     );
-    if (found) {
+
+    if (matched) {
+      localStorage.setItem('userID', matched.ID);
+      localStorage.setItem('userName', matched.name);
       navigate(`/${role}`);
     } else {
       setError('Invalid credentials');
@@ -64,12 +86,13 @@ const Login = () => {
         ) : (
           <form onSubmit={handleSubmit}>
             <h1 className={styles.loginTitle}>
-              {role === 'doctor' ? 'Doctor Login' : role === 'patient' ? 'Patient Login' : 'Login'}
+              {role === 'doctor' ? 'Doctor Login' : 'Patient Login'}
             </h1>
-            
+
             <button type="button" className={styles.backLink} onClick={() => setRole('')}>
-              &#8592; Back 
+              &#8592; Back
             </button>
+
             <div className={styles.inputGroup}>
               <label className={styles.inputLabel}>Email</label>
               <input
@@ -88,11 +111,11 @@ const Login = () => {
                 autoComplete="current-password"
               />
             </div>
-            <div className={styles.forgotRow}>
-              <a href="#" className={styles.forgotLink}>Forgot password?</a>
-            </div>
+
             {error && <div className={styles.errorMsg}>{error}</div>}
+
             <button type="submit" className={styles.loginBtn}>Log in</button>
+
             <div className={styles.signupPrompt}>
               Don't have an account? <a href="#" className={styles.signupLink}>Sign up</a>
             </div>
@@ -103,4 +126,4 @@ const Login = () => {
   );
 };
 
-export default Login; 
+export default Login;

@@ -20,9 +20,7 @@ type Appointment = {
   PID: string;
 };
 
-const PID = "patJimmy";
-
-
+const PID = localStorage.getItem('userID') || '';
 
 const PatientHome = () => {
   const [showAppointmentsModal, setShowAppointmentsModal] = useState(false);
@@ -32,7 +30,7 @@ const PatientHome = () => {
 
   useEffect(() => {
     axios
-      .get('/api/appointments/medications')
+      .get('/api/medications')
       .then((res) => {
         if (Array.isArray(res.data)) {
           const patientMeds = res.data
@@ -67,11 +65,27 @@ const PatientHome = () => {
       });
   }, []);
 
+  const [patientName, setPatientName] = useState('');
+
+  useEffect(() => {
+    if (!PID) return;
+    axios.get('/api/accounts')
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          const user = res.data.find((acc) => acc.ID?.trim().toLowerCase() === PID.toLowerCase());
+          if (user) {
+            setPatientName(user.name.split(' ')[0]); // 👈 First name only
+          }
+        }
+      })
+      .catch(err => console.error("❌ Failed to fetch user name:", err));
+  }, []);
+
   return (
     <div className={styles.bg}>
       <PatientNavbar />
       <main className={styles.main}>
-        <h1 className={styles.welcome}>Welcome, Jimmy!</h1>
+        <h1 className={styles.welcome}>Welcome, {patientName || 'Patient'}!</h1>
         <div className={styles.subtitle}>
           {appointments.length > 0 ? (
             <>
@@ -97,7 +111,7 @@ const PatientHome = () => {
                   <div>
                   <strong>{appt.apt_name}</strong>
                   <div className={styles.listDetail}>{new Date(appt.apt_dateTime).toLocaleString()}</div>
-                  <div className={styles.listDetail}>With {appt.DID}</div>
+                  <div className={styles.listDetail}>With Dr.{appt.DID}</div>
                   </div>
                 </li>
               ))}
@@ -113,7 +127,7 @@ const PatientHome = () => {
                   <div>
                   <strong>{med.medication}</strong>
                   <div className={styles.listDetail}>{med.frequency}</div>
-                  <div className={styles.listDetail}>By {med.DID} • Refill: {med.refillDate}</div>
+                  <div className={styles.listDetail}>By Dr.{med.DID} • Refill: {med.refillDate}</div>
                   </div>
                   <span className={
                     med.status === 'Active'
@@ -140,7 +154,7 @@ const PatientHome = () => {
                       <div>
                       <strong>{appt.apt_name}</strong>
                       <div className={styles.listDetail}>{new Date(appt.apt_dateTime).toLocaleString()}</div>
-                      <div className={styles.listDetail}>With {appt.DID}</div>
+                      <div className={styles.listDetail}>With Dr.{appt.DID}</div>
                       </div>
                     </li>
                   ))}
@@ -162,7 +176,7 @@ const PatientHome = () => {
                     <div>
                       <strong>{med.medication}</strong>
                       <div className={styles.listDetail}>{med.frequency}</div>
-                      <div className={styles.listDetail}>By {med.DID} • Refill: {med.refillDate}</div>
+                      <div className={styles.listDetail}>By Dr.{med.DID} • Refill: {med.refillDate}</div>
                     </div>
                     <span className={
                       med.status === 'Active'

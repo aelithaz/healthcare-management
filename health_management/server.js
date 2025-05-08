@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import appointmentRoutes from './routes/appointmentRoutes.js';
+import medicationRoutes from './routes/medicationRoutes.js';
+import accountRoutes from './routes/accountRoutes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -24,6 +26,8 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('❌ MongoDB error:', err));
 
 app.use('/api/appointments', appointmentRoutes);
+app.use('/api/medications', medicationRoutes);
+app.use('/api/accounts', accountRoutes);
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // Catch-all: send index.html for client-side routing
