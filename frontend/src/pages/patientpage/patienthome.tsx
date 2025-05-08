@@ -1,6 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './PatientHome.module.css';
 import PatientNavbar from './PatientNavbar';
+import axios from 'axios';
+
+type Medication = {
+  PID: string;
+  DID: string;
+  medication: string;
+  dosage: string;
+  frequency: string;
+  refillDate: string;
+  status: string;
+};
+
+const PID = "patJimmy";
 
 const appointments = [
   {
@@ -35,33 +48,29 @@ const appointments = [
   },
 ];
 
-const medications = [
-  {
-    name: 'Lisinopril 10mg',
-    frequency: 'Once daily',
-    doctor: 'Dr. Smith',
-    refill: 'May 20, 2025',
-    status: 'Active',
-  },
-  {
-    name: 'Atorvastatin 20mg',
-    frequency: 'Once daily at bedtime',
-    doctor: 'Dr. Johnson',
-    refill: 'May 15, 2025',
-    status: 'Active',
-  },
-  {
-    name: 'Metformin 500mg',
-    frequency: 'Twice daily with meals',
-    doctor: 'Dr. Williams',
-    refill: 'May 12, 2025',
-    status: 'Refill Soon',
-  },
-];
-
 const PatientHome = () => {
   const [showAppointmentsModal, setShowAppointmentsModal] = useState(false);
   const [showMedicationsModal, setShowMedicationsModal] = useState(false);
+
+  const [medications, setMedications] = useState<Medication[]>([]);
+
+  useEffect(() => {
+    axios
+      .get('/api/appointments/medications')
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          const patientMeds = res.data
+            .filter((m) => m.PID?.trim().toLowerCase() === PID.toLowerCase())
+            .sort((a, b) => new Date(a.refillDate).getTime() - new Date(b.refillDate).getTime()); // 🔼 ascending
+          setMedications(patientMeds);
+        } else {
+          console.warn("⚠️ Expected array, got:", res.data);
+        }
+      })
+      .catch((err) => {
+        console.error("❌ Failed to fetch medications:", err);
+      });
+  }, []);  
 
   return (
     <div className={styles.bg}>
@@ -96,9 +105,9 @@ const PatientHome = () => {
               {medications.slice(0, 3).map((med, i) => (
                 <li key={i} className={styles.listItem}>
                   <div>
-                    <strong>{med.name}</strong>
-                    <div className={styles.listDetail}>{med.frequency}</div>
-                    <div className={styles.listDetail}>By {med.doctor} • Refill: {med.refill}</div>
+                  <strong>{med.medication}</strong>
+                  <div className={styles.listDetail}>{med.frequency}</div>
+                  <div className={styles.listDetail}>By {med.DID} • Refill: {med.refillDate}</div>
                   </div>
                   <span className={
                     med.status === 'Active'
@@ -146,22 +155,22 @@ const PatientHome = () => {
               <h2 className={styles.cardTitle}>All Medications</h2>
               <div className={styles.modalList}>
                 <ul className={styles.list}>
-                  {medications.map((med, i) => (
-                    <li key={i} className={styles.listItem}>
-                      <div>
-                        <strong>{med.name}</strong>
-                        <div className={styles.listDetail}>{med.frequency}</div>
-                        <div className={styles.listDetail}>By {med.doctor} • Refill: {med.refill}</div>
-                      </div>
-                      <span className={
-                        med.status === 'Active'
-                          ? styles.statusActive
-                          : styles.statusRefill
-                      }>
-                        {med.status}
-                      </span>
-                    </li>
-                  ))}
+                {medications.map((med, i) => (
+                  <li key={i} className={styles.listItem}>
+                    <div>
+                      <strong>{med.medication}</strong>
+                      <div className={styles.listDetail}>{med.frequency}</div>
+                      <div className={styles.listDetail}>By {med.DID} • Refill: {med.refillDate}</div>
+                    </div>
+                    <span className={
+                      med.status === 'Active'
+                        ? styles.statusActive
+                        : styles.statusRefill
+                    }>
+                      {med.status}
+                    </span>
+                  </li>
+                ))}
                 </ul>
               </div>
               <button className={styles.actionBtn} onClick={() => setShowMedicationsModal(false)}>Close</button>
