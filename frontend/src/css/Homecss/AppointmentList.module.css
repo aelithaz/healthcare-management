@@ -1,0 +1,119 @@
+.card {
+  width: 100%;
+  background: #eff6ff;
+}
+
+.cardTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.subtitle {
+  color: #1e40af;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+
+.appointmentList {
+  border-top: 1px solid #dbeafe;
+  border-bottom: 1px solid #dbeafe;
+  margin-bottom: 1.5rem;
+}
+
+.appointmentItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.dot {
+  margin-top: 0.25rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: #3b82f6;
+  flex-shrink: 0;
+}
+
+.appointmentText {
+  text-align: left;
+}
+
+.appointmentTitle {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.appointmentDate {
+  color: #1e40af;
+  font-size: 1rem;
+}
+
+.appointmentDoctor {
+  color: #1d4ed8;
+  font-size: 0.75rem;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.viewAllBtn {
+  width: 100%;
+  border: 1px solid #93c5fd;
+  color: #1e293b;
+  background: #fff;
+  transition: background 0.15s;
+}
+
+.viewAllBtn:hover {
+  background: #dbeafe;
+}
+
+.dialogContent {
+  max-width: 32rem;
+}
+
+.dialogList {
+  border-top: 1px solid #dbeafe;
+  border-bottom: 1px solid #dbeafe;
+  margin-bottom: 1.5rem;
+  max-height: 24rem;
+  overflow-y: auto;
+}
+
+.closeBtn {
+  width: 100%;
+  border: 1px solid #93c5fd;
+  color: #1e293b;
+  background: #fff;
+  transition: background 0.15s;
+}
+
+.closeBtn:hover {
+  background: #dbeafe;
+}
+
+.scheduleBtn {
+  width: 100%;
+  background: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.15s;
+}
+
+.scheduleBtn:hover {
+  background: #1d4ed8;
+}
+
+.plusIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+} 

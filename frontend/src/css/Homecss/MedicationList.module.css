@@ -1,0 +1,118 @@
+.card {
+  width: 100%;
+  background: #eff6ff;
+}
+
+.cardTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.subtitle {
+  color: #1e40af;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+
+.medicationList {
+  border-top: 1px solid #dbeafe;
+  border-bottom: 1px solid #dbeafe;
+  margin-bottom: 1.5rem;
+}
+
+.medicationItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.pillIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #60a5fa;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.medicationText {
+  flex: 1;
+  text-align: left;
+}
+
+.medicationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.medicationName {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.statusActive {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.statusRefill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f59e42;
+}
+
+.medicationFrequency {
+  color: #1e40af;
+  font-size: 1rem;
+}
+
+.medicationPrescriber {
+  color: #1d4ed8;
+  font-size: 0.75rem;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.viewAllBtn {
+  width: 100%;
+  border: 1px solid #93c5fd;
+  color: #1e293b;
+  background: #fff;
+  margin-bottom: 0.75rem;
+  transition: background 0.15s;
+}
+
+.viewAllBtn:hover {
+  background: #dbeafe;
+}
+
+.dialogContent {
+  max-width: 32rem;
+}
+
+.dialogList {
+  border-top: 1px solid #dbeafe;
+  border-bottom: 1px solid #dbeafe;
+  margin-bottom: 1.5rem;
+  max-height: 24rem;
+  overflow-y: auto;
+}
+
+.closeBtn {
+  width: 100%;
+  border: 1px solid #93c5fd;
+  color: #1e293b;
+  background: #fff;
+  transition: background 0.15s;
+}
+
+.closeBtn:hover {
+  background: #dbeafe;
+} 
