@@ -1,0 +1,82 @@
+.card {
+  background: #e6f6fb;
+  border-radius: 16px;
+  padding: 32px 24px;
+  min-width: 340px;
+  box-shadow: 0 2px 8px #0001;
+  text-align: left;
+}
+.cardTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0077b6;
+  margin-bottom: 8px;
+}
+.cardSubtitle {
+  color: #0090d0;
+  font-size: 1rem;
+  margin-bottom: 18px;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+.listItem {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 2px #0001;
+}
+.listDetail {
+  color: #0090d0;
+  font-size: 0.98rem;
+}
+.actionBtn {
+  background: #fff;
+  color: #0090d0;
+  border: 1.5px solid #b6e6fa;
+  border-radius: 8px;
+  padding: 12px 0;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.actionBtn:hover {
+  background: #d0f0fa;
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modalContent {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px #0002;
+  padding: 36px 32px 28px 32px;
+  min-width: 380px;
+  max-width: 95vw;
+  width: 480px;
+  height: 480px;
+  max-height: 80vh;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.modalList {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  margin-bottom: 18px;
+} 
