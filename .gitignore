@@ -1,0 +1,27 @@
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+
+# Virtual environment
+venv/
+env/
+
+# VSCode
+.vscode/
+
+# JavaScript dependencies
+node_modules/
+frontend/node_modules/
+
+# Build outputs
+dist/
+frontend/dist/
+
+# OS / tool cruft
+.DS_Store
+.vite/
+
+# Lockfiles
+package-lock.json
+frontend/package-lock.json
