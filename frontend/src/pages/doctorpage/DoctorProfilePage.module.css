@@ -1,41 +1,183 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  background: #f9f9f9;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  width: 100%;
 }
 
-.title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #0090d0;
-  margin-bottom: 20px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
 }
 
-.profileSection, .appointmentsSection {
-  margin-bottom: 30px;
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-.subtitle {
+.cardTitle {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
   color: #0077b6;
-  margin-bottom: 10px;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
-.info {
-  font-size: 1rem;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.formGroup label {
+  font-weight: 500;
   color: #333;
 }
 
-.list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.formGroup input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.list li {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.saveButton,
+.cancelButton,
+.editButton {
+  padding: 10px 20px;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.saveButton {
+  background-color: #28a745;
+  color: white;
+}
+
+.cancelButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+.editButton {
+  background-color: #0077b6;
+  color: white;
+}
+
+.patientCard {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.detailButton {
+  background-color: #0077b6;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.detailButton:hover {
+  background-color: #0056a6;
+}
+
+.appointmentCard {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.appointmentCard p {
+  margin: 5px 0;
+}
+
+.cancelButton {
+  background-color: #ff4c4c;
+}
+
+.rescheduleButton {
+  background-color: #ffc107;
+}
+
+.notifications {
+  text-align: left;
+}
+
+.calendar {
+  text-align: center;
+}
+
+.messaging {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.messageBubble {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.messageBubble.patient {
+  background-color: #e9f7f2;
+  color: #00796b;
+  align-self: flex-start;
+}
+
+.messageBubble.doctor {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  align-self: flex-end;
+}
+
+.messageInput {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.messageInput textarea {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.messageInput button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0077b6;
+  color: white;
+  cursor: pointer;
 }
