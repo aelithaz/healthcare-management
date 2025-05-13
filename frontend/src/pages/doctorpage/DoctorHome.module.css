@@ -1,0 +1,43 @@
+.bg {
+  min-height: 100vh;
+  background: #f7fcfd;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 48px 0 48px;
+}
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0090d0;
+}
+.title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0077b6;
+}
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 0 48px 0;
+  text-align: center;
+}
+.welcome {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0090d0;
+  margin-bottom: 12px;
+}
+.subtitle {
+  color: #166086;
+  font-size: 1.15rem;
+}
+.cardsRow {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
+} 
