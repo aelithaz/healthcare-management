@@ -1,0 +1,15 @@
+.container {
+  margin-top: 20px;
+}
+
+.messages {
+  margin-bottom: 10px;
+}
+
+.doctor {
+  color: blue;
+}
+
+.patient {
+  color: green;
+}
