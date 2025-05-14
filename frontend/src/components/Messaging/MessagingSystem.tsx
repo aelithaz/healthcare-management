@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styles from './MessagingSystem.module.css';
 
 interface Message {
   sender: 'Doctor' | 'Patient';
